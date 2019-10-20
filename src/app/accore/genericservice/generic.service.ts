@@ -35,8 +35,10 @@ export class GenericService {
             this.nav_dest = 'entity';
         } else if (respdata.havepackages === 'false') {
             this.nav_dest = 'package';
-        } else if (respdata.entitybranch.length === 0) {
-            this.nav_dest = 'nobranch';
+        } else if (respdata.entityBranch.length === 0) {
+            this.nav_dest = 'branch';
+        } else {
+            this.nav_dest = 'module';
         }
     }
 

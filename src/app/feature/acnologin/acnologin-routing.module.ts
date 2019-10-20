@@ -1,15 +1,16 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { AchomeComponent } from './achome/achome.component';
+import {AchomeComponent} from './achome/achome.component';
 
 
 const routes: Routes = [
-  { path: '', component: AchomeComponent }  
+    {path: '', component: AchomeComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
-export class AcnologinRoutingModule { }
+export class AcnologinRoutingModule {
+}

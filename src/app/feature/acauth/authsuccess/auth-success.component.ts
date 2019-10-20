@@ -44,7 +44,7 @@ export class AuthSuccessComponent implements OnInit {
             },
             {
                 'name': 'Hotel POS',
-                'route': 'alert',
+                'route': '/pos',
                 'display': 'Hotel POS',
                 'previewImage': 'cortado.jpg'
             },
@@ -71,10 +71,16 @@ export class AuthSuccessComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.genericService.nav_dest);
-        this.genericService.nav_dest = '';
-        if (this.genericService.nav_dest === 'entity' || this.genericService.nav_dest === 'package') {
-            this.router.navigate(['/admin']);
-        } else if (this.genericService.nav_dest !== 'entity' && this.genericService.nav_dest !== 'package') {
+        if (this.genericService.nav_dest === 'entity') {
+            this.router.navigate(['/admin/admin/entity']);
+        } else if (this.genericService.nav_dest === 'package') {
+            this.router.navigate(['/admin/admin/payment']);
+        } else if (this.genericService.nav_dest === 'branch') {
+            this.router.navigate(['/admin/admin/branch']);
+        } else if (this.genericService.nav_dest === 'module') {
+            this.moduleFlag = true;
+            this.iModules = AuthSuccessComponent.initializeModuleDetails();
+        } else {
             this.moduleFlag = true;
             this.iModules = AuthSuccessComponent.initializeModuleDetails();
         }

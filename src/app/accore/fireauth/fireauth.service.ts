@@ -7,10 +7,11 @@ import {LogoutSuccess} from '../../feature/acauth/state/auth.actions';
 import {Store} from '@ngxs/store';
 import {ApiService} from '../apiservice/api.service';
 import {DialogsService} from 'src/app/accommonmod/dialogmod/dialogs.service';
-import {AlertService,} from '../../accommonmod/alertmod/alertcore/alert.service';
+import {AlertService} from '../../accommonmod/alertmod/alertcore/alert.service';
 import {Router} from '@angular/router';
 import {AuthRespModel} from '../../feature/acauth/models/auth.model';
 import {installation} from '../../../environments/environment';
+import * as firebase from 'firebase';
 
 
 @Injectable({
