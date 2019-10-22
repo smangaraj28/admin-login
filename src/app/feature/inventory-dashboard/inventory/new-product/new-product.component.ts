@@ -42,6 +42,8 @@ export class NewProductComponent implements OnInit {
         this.newProductForm = new FormGroup({
             newProductIdFormControl: new FormControl(),
             newProductNameFormControl: new FormControl(),
+            newProductSKUFormControl: new FormControl(),
+            newProductUnitFormControl: new FormControl(),
             newProductLengthFormControl: new FormControl(),
             newProductWidthFormControl: new FormControl(),
             newProductHeightFormControl: new FormControl(),

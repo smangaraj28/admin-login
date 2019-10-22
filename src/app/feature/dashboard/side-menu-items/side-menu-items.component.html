@@ -11,7 +11,9 @@
   <mat-list-item *ngIf="menu.link!=false" (click)="menu.open = !menu.open" [routerLink]="[menu.link]"
                  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
                  [ngClass]="{'active': menu.link ? router.isActive(menu.link, true): false}">
-    <mat-icon matListIcon iconsmall>{{menu.icon}} </mat-icon>
+    <span class="i-circle">{{menu.icon}}</span>
+<!--    <mat-chip color="primary" style="font-size: 30px" selected>{{menu.icon}}</mat-chip>-->
+<!--    <mat-icon matListIcon iconsmall>{{menu.icon}} </mat-icon>-->
     <h3 matLine *ngIf="!iconOnly">{{ menu.name }} </h3>
   </mat-list-item>
 

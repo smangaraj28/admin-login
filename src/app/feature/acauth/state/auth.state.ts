@@ -22,12 +22,12 @@ import {DialogsService} from 'src/app/accommonmod/dialogmod/dialogs.service';
         error: null
     }
 })
-export class AuthState implements NgxsOnInit {
+export class AuthState {
 
     dialogd: any;
 
-    constructor(private store: Store, private afAuthservice: FireauthService,
-                private dialog: DialogsService, private api: ApiService) {
+    constructor(private store?: Store, private afAuthservice?: FireauthService,
+                private dialog?: DialogsService, private api?: ApiService) {
     }
 
     /**
@@ -61,8 +61,8 @@ export class AuthState implements NgxsOnInit {
     /**
      * Dispatch CheckSession on start
      */
-    ngxsOnInit(ctx: StateContext<AuthStateModel>) {
-    }
+    // ngxsOnInit(ctx: StateContext<AuthStateModel>) {
+    // }
 
     /**
      * Commands

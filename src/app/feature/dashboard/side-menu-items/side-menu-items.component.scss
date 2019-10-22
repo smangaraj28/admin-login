@@ -54,8 +54,17 @@
   background-color: grey;
 }
 
+.i-circle {
+  background: #3f51b5;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 30%;
+  font-size: 15px;
+}
+
 @include sidemenu-item(20px)
 //side-menu-items{
 //    @include sidemenu-item(20px)
 //}
+
 

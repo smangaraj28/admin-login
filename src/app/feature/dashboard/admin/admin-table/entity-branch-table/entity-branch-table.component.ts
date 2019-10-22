@@ -1,4 +1,13 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    OnDestroy,
+    OnInit,
+    ViewChild
+} from '@angular/core';
 import {MatSelect} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
@@ -10,6 +19,7 @@ import {EntityBranch} from './models/entity-branch';
 import {FormControl, FormGroup} from '@angular/forms';
 import {MatSelectChange} from '@angular/material/select';
 import {ActivatedRoute} from '@angular/router';
+import {DataService} from './services/data.service';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -41,7 +51,9 @@ export class EntityBranchTableComponent implements OnInit, AfterViewInit, OnDest
 
     constructor(public httpClient: HttpClient,
                 public dialog: MatDialog,
-                private activatedRoute: ActivatedRoute) {
+                private activatedRoute: ActivatedRoute,
+                private dataService: DataService,
+                private cd: ChangeDetectorRef) {
     }
 
     static initializeData() {
@@ -96,8 +108,14 @@ export class EntityBranchTableComponent implements OnInit, AfterViewInit, OnDest
         });
         const resolvedEntityBranchData = this.activatedRoute.snapshot.data.resolvedEntityBranchData;
         console.log('Resolved Entity Branch Data', resolvedEntityBranchData);
-        this.entityBranchDataSource = resolvedEntityBranchData;
-        this.clonedEntityBranchDataSource = resolvedEntityBranchData;
+        if (('t' in resolvedEntityBranchData[0]) &&
+            (resolvedEntityBranchData[0]['t'] === 'data couldnt be extracted from fetch results')) {
+            this.entityBranchDataSource = [];
+            this.clonedEntityBranchDataSource = [];
+        } else {
+            this.entityBranchDataSource = resolvedEntityBranchData;
+            this.clonedEntityBranchDataSource = resolvedEntityBranchData;
+        }
         this.entityBranchData = EntityBranchTableComponent.initializeData();
         this.loadData();
     }
@@ -144,9 +162,20 @@ export class EntityBranchTableComponent implements OnInit, AfterViewInit, OnDest
 
         dialogRef.afterClosed().subscribe(result => {
             if (result === 1) {
-                const foundIndex = this.entityBranchDataSource.findIndex(x => x.entityBranchId === this.entityBranchId);
-                this.entityBranchDataSource.splice(foundIndex, 1);
-                this.clonedEntityBranchDataSource = [...this.entityBranchDataSource];
+                this.dataService.getAllIssues().subscribe(
+                    resolvedEntityBranchData => {
+                        console.log(resolvedEntityBranchData);
+                        if (('t' in resolvedEntityBranchData[0]) &&
+                            (resolvedEntityBranchData[0]['t'] === 'data couldnt be extracted from fetch results')) {
+                            this.entityBranchDataSource = [];
+                            this.clonedEntityBranchDataSource = [];
+                        } else {
+                            this.entityBranchDataSource = [...resolvedEntityBranchData];
+                            this.clonedEntityBranchDataSource = [...resolvedEntityBranchData];
+                        }
+                        this.cd.detectChanges();
+                    }
+                );
                 this.refreshTable();
             }
         });

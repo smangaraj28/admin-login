@@ -1,4 +1,13 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ElementRef,
+    OnDestroy,
+    OnInit,
+    ViewChild
+} from '@angular/core';
 import {MatSelect} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
 import {MatDialog} from '@angular/material/dialog';
@@ -10,6 +19,7 @@ import {Entity} from './models/entity';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GenericService} from '../../../../../accore/genericservice/generic.service';
+import {DataService} from './services/data.service';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,7 +49,9 @@ export class EntityTableComponent implements OnInit, AfterViewInit, OnDestroy {
                 public dialog: MatDialog,
                 private activatedRoute: ActivatedRoute,
                 private genericservice: GenericService,
-                private router: Router) {
+                private dataService: DataService,
+                private router: Router,
+                private cd: ChangeDetectorRef) {
     }
 
     static initializeData() {
@@ -105,8 +117,14 @@ export class EntityTableComponent implements OnInit, AfterViewInit, OnDestroy {
             });
             const resolvedEntityData = this.activatedRoute.snapshot.data.resolvedEntityData;
             console.log('Resolved Entity Data', resolvedEntityData);
-            this.entityDataSource = resolvedEntityData;
-            this.clonedEntityDataSource = resolvedEntityData;
+            if (('t' in resolvedEntityData[0]) &&
+                (resolvedEntityData[0]['t'] === 'data couldnt be extracted from fetch results')) {
+                this.entityDataSource = [];
+                this.clonedEntityDataSource = [];
+            } else {
+                this.entityDataSource = resolvedEntityData;
+                this.clonedEntityDataSource = resolvedEntityData;
+            }
             this.entityData = EntityTableComponent.initializeData();
             this.loadData();
         }
@@ -146,11 +164,20 @@ export class EntityTableComponent implements OnInit, AfterViewInit, OnDestroy {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result === 1) {
-                const foundIndex = this.entityDataSource.findIndex(x => x.entityId === this.entityId);
-                // this.entityDataSource.splice(foundIndex, 1);
-                console.log(this.entityDataSource);
-                this.clonedEntityDataSource = [...this.entityDataSource];
-                console.log(this.clonedEntityDataSource);
+                this.dataService.getAllIssues().subscribe(
+                    resolvedEntityData => {
+                        console.log(resolvedEntityData);
+                        if (('t' in resolvedEntityData[0]) &&
+                            (resolvedEntityData[0]['t'] === 'data couldnt be extracted from fetch results')) {
+                            this.entityDataSource = [];
+                            this.clonedEntityDataSource = [];
+                        } else {
+                            this.entityDataSource = [...resolvedEntityData];
+                            this.clonedEntityDataSource = [...resolvedEntityData];
+                        }
+                        this.cd.detectChanges();
+                    }
+                );
                 this.refreshTable();
             }
         });

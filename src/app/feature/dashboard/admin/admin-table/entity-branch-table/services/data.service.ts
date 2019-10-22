@@ -27,14 +27,15 @@ export class DataService {
     }
 
     /** CRUD METHODS */
-    getAllIssues(): void {
-        this.httpClient.get<EntityBranch[]>('/assets/entity-branch.json').subscribe(data => {
-                console.log('data', data);
-                this.dataChange.next(data);
-            },
-            (error: HttpErrorResponse) => {
-                console.log(error.name + ' ' + error.message);
-            });
+    getAllIssues() {
+        return this.httpClient.get<EntityBranch[]>(environment['url_' + 'auth_signup'] + '/' + 'entitybranch');
+        // this.httpClient.get<EntityBranch[]>('/assets/entity-branch.json').subscribe(data => {
+        //         console.log('data', data);
+        //         this.dataChange.next(data);
+        //     },
+        //     (error: HttpErrorResponse) => {
+        //         console.log(error.name + ' ' + error.message);
+        //     });
     }
 
     // DEMO ONLY, you can find working methods below

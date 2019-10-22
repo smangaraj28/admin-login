@@ -23,7 +23,7 @@ export class ActoolbarComponent implements OnInit {
     @Input() hasSidenav;
     @Input() hasSidebar;
 
-    searchOpen: boolean = false;
+    searchOpen = false;
 
     //toolbarHelpers = ToolbarHelpers;
     constructor(private store: Store,

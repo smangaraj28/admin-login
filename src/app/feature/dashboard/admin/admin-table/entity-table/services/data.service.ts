@@ -27,7 +27,8 @@ export class DataService {
     }
 
     /** CRUD METHODS */
-    getAllIssues(): void {
+    getAllIssues() {
+        return this.httpClient.get<Entity[]>(environment['url_' + 'auth_signup'] + '/' + 'entity');
         // this.httpClient.get<Entity[]>('/assets/entity.json').subscribe(data => {
         //     console.log('data', data);
         //     this.dataChange.next(data);
