@@ -19,6 +19,6 @@ export class EntityBranchTableDeleteDialogComponent {
   }
 
   confirmDelete(): void {
-    this.dataService.deleteIssue(this.data.entityId);
+    this.dataService.deleteIssue(this.data.entityId, this.data.entityBranchId);
   }
 }

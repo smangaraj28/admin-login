@@ -39,7 +39,7 @@ export class EntityTableComponent implements OnInit, AfterViewInit, OnDestroy {
                 public dialog: MatDialog,
                 private activatedRoute: ActivatedRoute,
                 private genericservice: GenericService,
-                private router: Router,) {
+                private router: Router) {
     }
 
     static initializeData() {
@@ -147,8 +147,10 @@ export class EntityTableComponent implements OnInit, AfterViewInit, OnDestroy {
         dialogRef.afterClosed().subscribe(result => {
             if (result === 1) {
                 const foundIndex = this.entityDataSource.findIndex(x => x.entityId === this.entityId);
-                this.entityDataSource.splice(foundIndex, 1);
+                // this.entityDataSource.splice(foundIndex, 1);
+                console.log(this.entityDataSource);
                 this.clonedEntityDataSource = [...this.entityDataSource];
+                console.log(this.clonedEntityDataSource);
                 this.refreshTable();
             }
         });

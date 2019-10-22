@@ -46,6 +46,7 @@ export class EntityBranchTableComponent implements OnInit, AfterViewInit, OnDest
 
     static initializeData() {
         return {
+            entityId: null,
             entityName: null,
             entityBranchId: null,
             entityBranchName: null,
@@ -136,6 +137,7 @@ export class EntityBranchTableComponent implements OnInit, AfterViewInit, OnDest
 
     deleteItem(i: number, row) {
         this.entityBranchId = row.entityBranchId;
+        console.log(row);
         const dialogRef = this.dialog.open(EntityBranchTableDeleteDialogComponent, {
             data: row
         });

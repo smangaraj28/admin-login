@@ -52,8 +52,9 @@ export class AcinterceptorService {
         // console.log(countryid);
         console.log(screenid);
         console.log(installation.thirpartyauth);
-
-
+        this.headers = this.setHeader(this.headers, 'Access-Control-Allow-Origin', '*');
+        this.headers = this.setHeader(this.headers, 'Access-Control-Allow-Methods', 'DELETE, POST, GET, OPTIONS');
+        this.headers = this.setHeader(this.headers, 'Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With');
         this.headers = this.setHeader(this.headers, 'thirdparty', installation.thirpartyauth.toString());
         this.headers = this.setHeader(this.headers, 'screenid', screenid);
 

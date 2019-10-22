@@ -1,53 +1,63 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {Entity} from '../models/entity';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {environment} from '../../../../../../../environments/environment';
 // import { environment } from '../../../../environments/environment';
 // import { Entity } from '../../product';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DataService {
-  // private productsUrl = environment.server_url + '/products';
-  dataChange: BehaviorSubject<Entity[]> = new BehaviorSubject<Entity[]>([]);
-  // Temporarily stores entityData from dialogs
-  dialogData: any;
+    // private productsUrl = environment.server_url + '/products';
+    dataChange: BehaviorSubject<Entity[]> = new BehaviorSubject<Entity[]>([]);
+    // Temporarily stores entityData from dialogs
+    dialogData: any;
 
-  constructor(private httpClient: HttpClient) {
-  }
+    constructor(private httpClient: HttpClient) {
+    }
 
-  get data(): Entity[] {
-    return this.dataChange.value;
-  }
+    get data(): Entity[] {
+        return this.dataChange.value;
+    }
 
-  getDialogData() {
-    return this.dialogData;
-  }
+    getDialogData() {
+        return this.dialogData;
+    }
 
-  /** CRUD METHODS */
-  getAllIssues(): void {
-    // this.httpClient.get<Entity[]>('/assets/entity.json').subscribe(data => {
-    //     console.log('data', data);
-    //     this.dataChange.next(data);
-    //   },
-    //   (error: HttpErrorResponse) => {
-    //     console.log(error.name + ' ' + error.message);
-    //   });
-  }
+    /** CRUD METHODS */
+    getAllIssues(): void {
+        // this.httpClient.get<Entity[]>('/assets/entity.json').subscribe(data => {
+        //     console.log('data', data);
+        //     this.dataChange.next(data);
+        //   },
+        //   (error: HttpErrorResponse) => {
+        //     console.log(error.name + ' ' + error.message);
+        //   });
+    }
 
-  // DEMO ONLY, you can find working methods below
-  addIssue(issue: Entity): void {
-    this.dialogData = issue;
-  }
+    // DEMO ONLY, you can find working methods below
+    addIssue(issue: Entity): void {
+        this.dialogData = issue;
+    }
 
-  updateIssue(issue: Entity): void {
-    this.dialogData = issue;
-  }
+    updateIssue(issue: Entity): void {
+        this.dialogData = issue;
+    }
 
-  deleteIssue(id: number): void {
-    console.log(id);
-  }
+    deleteIssue(id: number): void {
+        this.httpClient.delete(environment['url_' + 'auth_signup'] + '/' + 'entity', {
+            params: new HttpParams().set('entityid', String(id))
+        }).subscribe(entityData => {
+                console.log(entityData);
+                // this.toasterService.showToaster('Successfully deleted', 3000);
+            },
+            (err: HttpErrorResponse) => {
+                // this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+            }
+        );
+    }
 }
 
 

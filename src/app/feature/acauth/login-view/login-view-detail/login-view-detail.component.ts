@@ -508,7 +508,7 @@ export class LoginViewDetailComponent implements OnInit {
                     console.log(error);
                     await this.store.dispatch(new LoginFailed()).subscribe(
                         async (sucess) => {
-                            console.log(error.error.message);
+                            // console.log(error.error.message);
                             console.log('after store');
                             await this.login_failure(error.error);
                         },

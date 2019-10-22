@@ -132,6 +132,4 @@ export class AuthState implements NgxsOnInit {
     async Setstatetnull(ctx: StateContext<AuthStateModel>) {
         await ctx.dispatch(LogoutSuccess);
     }
-
-
 }

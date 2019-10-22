@@ -38,7 +38,7 @@ export class AuthSuccessComponent implements OnInit {
             },
             {
                 'name': 'Inventory Management',
-                'route': 'action-menu',
+                'route': '/inventory',
                 'display': 'Inventory Management',
                 'previewImage': 'chocolate-croissant.jpg'
             },
@@ -71,6 +71,7 @@ export class AuthSuccessComponent implements OnInit {
 
     ngOnInit() {
         console.log(this.genericService.nav_dest);
+        this.genericService.nav_dest = 'module';
         if (this.genericService.nav_dest === 'entity') {
             this.router.navigate(['/admin/admin/entity']);
         } else if (this.genericService.nav_dest === 'package') {

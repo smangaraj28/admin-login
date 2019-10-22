@@ -1,4 +1,5 @@
 export interface EntityBranch {
+  entityId?: string;
   entityName?: string;
   entityBranchId: number;
   entityBranchName: string;  // 1

@@ -9,7 +9,7 @@
         <span style="font-size: 12px;">.com</span>
       </span>
     </mat-toolbar>
-    <app-pos-side-menu></app-pos-side-menu>
+    <app-inventory-side-menu></app-inventory-side-menu>
   </mat-sidenav>
   <mat-sidenav-content style="z-index: unset;overflow: hidden;">
     <mat-drawer-container fullscreen>
@@ -21,11 +21,11 @@
             <span style="font-size: 6px;">.com</span>
           </span>
         </mat-toolbar>
-        <app-pos-side-menu [iconOnly]="true"></app-pos-side-menu>
+        <app-inventory-side-menu [iconOnly]="true"></app-inventory-side-menu>
       </mat-drawer>
       <mat-drawer-content style="overflow: hidden;">
-        <app-pos-tool-bar [hasSidenav]="hasSidenav" [sidenav]="sidenav1" [drawer]="drawer" [hasSidebar]="hasSidebar"
-                          [sidebar]="sidenav2" [matDrawerShow]="matDrawerShow" style="z-index: 500"></app-pos-tool-bar>
+        <app-inventory-tool-bar [hasSidenav]="hasSidenav" [sidenav]="sidenav1" [drawer]="drawer" [hasSidebar]="hasSidebar"
+                          [sidebar]="sidenav2" [matDrawerShow]="matDrawerShow" style="z-index: 500"></app-inventory-tool-bar>
         <!--perfect-scrollbar  style="height: calc(100% - 33px);" -->
         <div class="content-scrollbar">
           <router-outlet *ngIf="!loading"></router-outlet>

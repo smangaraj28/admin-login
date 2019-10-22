@@ -20,7 +20,6 @@ import {EntityResolver} from './admin-table/entity-table/services/entity.resolve
 import {EntityBranchResolver} from './admin-table/entity-branch-table/services/entity-branch.resolver';
 import {RoleResolver} from './admin-table/role-table/services/role.resolver';
 import {UserResolver} from './admin-table/user-table/services/user.resolver';
-import {MatPaginatorModule} from '@angular/material';
 
 export const DASHBOARD_ROUTES: Routes = [
     {path: '', redirectTo: 'entity', pathMatch: 'full'},

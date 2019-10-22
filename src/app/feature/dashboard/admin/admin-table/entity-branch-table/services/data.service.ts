@@ -1,53 +1,64 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {EntityBranch} from '../models/entity-branch';
+import {environment} from '../../../../../../../environments/environment';
 
 // import { environment } from '../../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DataService {
-  // private productsUrl = environment.server_url + '/products';
-  dataChange: BehaviorSubject<EntityBranch[]> = new BehaviorSubject<EntityBranch[]>([]);
-  // Temporarily stores entityData from dialogs
-  dialogData: any;
+    // private productsUrl = environment.server_url + '/products';
+    dataChange: BehaviorSubject<EntityBranch[]> = new BehaviorSubject<EntityBranch[]>([]);
+    // Temporarily stores entityData from dialogs
+    dialogData: any;
 
-  constructor(private httpClient: HttpClient) {
-  }
+    constructor(private httpClient: HttpClient) {
+    }
 
-  get data(): EntityBranch[] {
-    return this.dataChange.value;
-  }
+    get data(): EntityBranch[] {
+        return this.dataChange.value;
+    }
 
-  getDialogData() {
-    return this.dialogData;
-  }
+    getDialogData() {
+        return this.dialogData;
+    }
 
-  /** CRUD METHODS */
-  getAllIssues(): void {
-    this.httpClient.get<EntityBranch[]>('/assets/entity-branch.json').subscribe(data => {
-        console.log('data', data);
-        this.dataChange.next(data);
-      },
-      (error: HttpErrorResponse) => {
-        console.log(error.name + ' ' + error.message);
-      });
-  }
+    /** CRUD METHODS */
+    getAllIssues(): void {
+        this.httpClient.get<EntityBranch[]>('/assets/entity-branch.json').subscribe(data => {
+                console.log('data', data);
+                this.dataChange.next(data);
+            },
+            (error: HttpErrorResponse) => {
+                console.log(error.name + ' ' + error.message);
+            });
+    }
 
-  // DEMO ONLY, you can find working methods below
-  addIssue(issue: EntityBranch): void {
-    this.dialogData = issue;
-  }
+    // DEMO ONLY, you can find working methods below
+    addIssue(issue: EntityBranch): void {
+        this.dialogData = issue;
+    }
 
-  updateIssue(issue: EntityBranch): void {
-    this.dialogData = issue;
-  }
+    updateIssue(issue: EntityBranch): void {
+        this.dialogData = issue;
+    }
 
-  deleteIssue(id: number): void {
-    console.log(id);
-  }
+    deleteIssue(id: string, branchid: string): void {
+        this.httpClient.delete(environment['url_' + 'auth_signup'] + '/' + 'entitybranch',
+            {
+                params: new HttpParams().set('entityid', String(id)).set('entitybranchid', String(branchid))
+            }).subscribe(entitybranchData => {
+                console.log(entitybranchData);
+                // this.toasterService.showToaster('Successfully deleted', 3000);
+            },
+            (err: HttpErrorResponse) => {
+                // this.toasterService.showToaster('Error occurred. Details: ' + err.name + ' ' + err.message, 8000);
+            }
+        );
+    }
 }
 
 
