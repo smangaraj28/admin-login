@@ -1,6 +1,7 @@
 <div class="top_card">
     <mat-card>
-        <mat-toolbar color="primary" style="position: sticky;top: 0;z-index: 1000;position: -webkit-sticky;" fxLayout="row"
+        <mat-toolbar color="primary" style="position: sticky;top: 0;z-index: 1000;position: -webkit-sticky;"
+                     fxLayout="row"
                      fxLayoutAlign="start center">
             <div fxFlex="90%" fxFlex.lt-md="70%">
                 New Product
@@ -11,7 +12,7 @@
                     <mat-select [(ngModel)]="newProductData.newProductType"
                                 name="productType">
                         <mat-option value="goods">Goods</mat-option>
-                        <mat-option  value="service">Service</mat-option>
+                        <mat-option value="service">Service</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -29,7 +30,8 @@
                                 <div fxFlex="45%">
                                     <b style="font-size: x-large"> Product Details:</b>
                                 </div>
-                                <div fxLayout=“row” fxLayoutAlign="center center" class="example-small-box mat-elevation-z4">
+                                <div fxLayout=“row” fxLayoutAlign="center center"
+                                     class="example-small-box mat-elevation-z4">
                                     <input style="display: none"
                                            type="file" (change)="onFileChanged($event)"
                                            #fileInput>
@@ -40,15 +42,18 @@
                                  fxLayoutGap.lt-md="0px">
                                 <mat-form-field fxFlex="30%">
                                     <input matInput formControlName="newProductNameFormControl"
-                                           type="text" placeholder="Product Name" [(ngModel)]="newProductData.newProductName" name="id" required>
+                                           type="text" placeholder="Product Name"
+                                           [(ngModel)]="newProductData.newProductName" name="id" required>
                                 </mat-form-field>
                                 <mat-form-field fxFlex="30%">
                                     <input matInput formControlName="newProductSKUFormControl"
-                                           type="text" placeholder="Product SKU" [(ngModel)]="newProductData.newProductSKU" name="id" required>
+                                           type="text" placeholder="Product SKU"
+                                           [(ngModel)]="newProductData.newProductSKU" name="id" required>
                                 </mat-form-field>
                                 <mat-form-field fxFlex="30%">
                                     <input matInput formControlName="newProductUnitFormControl"
-                                           type="text" placeholder="Product Unit" [(ngModel)]="newProductData.newProductUnit" name="id" required>
+                                           type="text" placeholder="Product Unit"
+                                           [(ngModel)]="newProductData.newProductUnit" name="id" required>
                                 </mat-form-field>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.lt-md="column" fxLayoutGap="20px"
@@ -58,15 +63,18 @@
                                 </div>
                                 <mat-form-field fxFlex="10%">
                                     <input matInput formControlName="newProductLengthFormControl"
-                                           type="text" placeholder="Length" [(ngModel)]="newProductData.newProductLength" name="id" required>
+                                           type="text" placeholder="Length"
+                                           [(ngModel)]="newProductData.newProductLength" name="id" required>
                                 </mat-form-field>
                                 <mat-form-field fxFlex="10%">
                                     <input matInput formControlName="newProductWidthFormControl"
-                                           type="text" placeholder="Width" [(ngModel)]="newProductData.newProductWidth" name="id" required>
+                                           type="text" placeholder="Width" [(ngModel)]="newProductData.newProductWidth"
+                                           name="id" required>
                                 </mat-form-field>
                                 <mat-form-field fxFlex="10%">
                                     <input matInput formControlName="newProductHeightFormControl"
-                                           type="text" placeholder="Height" [(ngModel)]="newProductData.newProductHeight" name="id" required>
+                                           type="text" placeholder="Height"
+                                           [(ngModel)]="newProductData.newProductHeight" name="id" required>
                                 </mat-form-field>
                                 <div fxFlex="10%"></div>
                                 <div fxFlex="10%" fxLayoutAlign="center center">
@@ -74,26 +82,31 @@
                                 </div>
                                 <mat-form-field fxFlex="30%">
                                     <input matInput formControlName="newProductWeightFormControl"
-                                           type="text" placeholder="Weight" [(ngModel)]="newProductData.newProductWeight" name="id" required>
+                                           type="text" placeholder="Weight"
+                                           [(ngModel)]="newProductData.newProductWeight" name="id" required>
                                 </mat-form-field>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.lt-md="column" fxLayoutGap="20px"
                                  fxLayoutGap.lt-md="0px">
                                 <mat-form-field fxFlex="20%">
                                     <input matInput formControlName="newProductUPCFormControl"
-                                           type="text" placeholder="UPC" [(ngModel)]="newProductData.newProductUPC" name="id" required>
+                                           type="text" placeholder="UPC" [(ngModel)]="newProductData.newProductUPC"
+                                           name="id" required>
                                 </mat-form-field>
                                 <mat-form-field fxFlex="20%">
                                     <input matInput formControlName="newProductMPNFormControl"
-                                           type="text" placeholder="MPN" [(ngModel)]="newProductData.newProductMPN" name="id" required>
+                                           type="text" placeholder="MPN" [(ngModel)]="newProductData.newProductMPN"
+                                           name="id" required>
                                 </mat-form-field>
                                 <mat-form-field fxFlex="20%">
                                     <input matInput formControlName="newProductEANFormControl"
-                                           type="text" placeholder="EAN" [(ngModel)]="newProductData.newProductEAN" name="id" required>
+                                           type="text" placeholder="EAN" [(ngModel)]="newProductData.newProductEAN"
+                                           name="id" required>
                                 </mat-form-field>
                                 <mat-form-field fxFlex="20%">
                                     <input matInput formControlName="newProductISBNFormControl"
-                                           type="text" placeholder="ISBN" [(ngModel)]="newProductData.newProductISBN" name="id" required>
+                                           type="text" placeholder="ISBN" [(ngModel)]="newProductData.newProductISBN"
+                                           name="id" required>
                                 </mat-form-field>
                             </div>
                             <br/>
@@ -112,34 +125,95 @@
                                  fxLayoutGap.lt-md="0px">
                                 <mat-form-field fxFlex="30%">
                                     <input matInput formControlName="newProductSalePriceFormControl"
-                                           type="text" placeholder="Selling Price(INR)" [(ngModel)]="newProductData.newProductSalePrice" name="id" required>
+                                           type="text" placeholder="Selling Price(INR)"
+                                           [(ngModel)]="newProductData.newProductSalePrice" name="id" required>
                                 </mat-form-field>
                                 <mat-form-field fxFlex="30%">
                                     <input matInput formControlName="newProductPurchasePriceFormControl"
-                                           type="text" placeholder="Purchase Price(INR)" [(ngModel)]="newProductData.newProductPurchasePrice" name="id" required>
+                                           type="text" placeholder="Purchase Price(INR)"
+                                           [(ngModel)]="newProductData.newProductPurchasePrice" name="id" required>
                                 </mat-form-field>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.lt-md="column" fxLayoutGap="20px"
                                  fxLayoutGap.lt-md="0px">
                                 <mat-form-field fxFlex="30%">
                                     <input matInput formControlName="newProductSaleAccountFormControl"
-                                           type="text" placeholder="Account" [(ngModel)]="newProductData.newProductSaleAccount" name="id" required>
+                                           type="text" placeholder="Account"
+                                           [(ngModel)]="newProductData.newProductSaleAccount" name="id" required>
                                 </mat-form-field>
                                 <mat-form-field fxFlex="30%">
                                     <input matInput formControlName="newProductPurchaseAccountFormControl"
-                                           type="text" placeholder="Account" [(ngModel)]="newProductData.newProductPurchaseAccount" name="id" required>
+                                           type="text" placeholder="Account"
+                                           [(ngModel)]="newProductData.newProductPurchaseAccount" name="id" required>
                                 </mat-form-field>
                             </div>
                             <div fxLayout="row" fxLayoutAlign="space-between" fxLayout.lt-md="column" fxLayoutGap="20px"
                                  fxLayoutGap.lt-md="0px">
                                 <mat-form-field fxFlex="30%">
                                     <input matInput formControlName="newProductSaleDescriptionFormControl"
-                                           type="text" placeholder="Description" [(ngModel)]="newProductData.newProductSaleDescription" name="id" required>
+                                           type="text" placeholder="Description"
+                                           [(ngModel)]="newProductData.newProductSaleDescription" name="id" required>
                                 </mat-form-field>
                                 <mat-form-field fxFlex="30%">
                                     <input matInput formControlName="newProductPurchaseDescriptionFormControl"
-                                           type="text" placeholder="Description" [(ngModel)]="newProductData.newProductPurchaseDescription" name="id" required>
+                                           type="text" placeholder="Description"
+                                           [(ngModel)]="newProductData.newProductPurchaseDescription" name="id"
+                                           required>
                                 </mat-form-field>
+                            </div>
+                            <div fxLayout="row"  fxLayout.lt-md="column" fxLayoutGap="20px"
+                                 fxLayoutGap.lt-md="0px">
+                                <div fxFlex="30%">
+                                    <b style="font-size: larger">Multiple Items?</b>
+                                </div>
+                                <div fxFlex="50%">
+                                    <mat-checkbox class="example-margin"
+                                                  [(ngModel)]="newProductData.newProductMultipleFlag"
+                                                  [ngModelOptions]="{standalone: true}">
+                                        Create Attributes and Options
+                                    </mat-checkbox>
+                                </div>
+                            </div>
+                            <div>
+                                <mat-table class="table-margin-bottom" #table [dataSource]="dataSource">
+                                    <ng-container matColumnDef="name">
+                                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <mat-form-field>
+                                                <input matInput  [ngModelOptions]="{standalone: true}" placeholder="Name" [(ngModel)]="row.name">
+                                            </mat-form-field>
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="age">
+                                        <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <mat-form-field floatLabel="{{ row.editing ? 'float' : 'never'}}">
+                                                <input matInput  type="number" placeholder="Age" [(ngModel)]="row.age" [ngModelOptions]="{standalone: true}">
+                                            </mat-form-field>
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="actionsColumn">
+                                        <mat-header-cell *matHeaderCellDef>
+                                            <button mat-icon-button color="accent" (click)="createNew()">
+                                                <mat-icon>add_circle</mat-icon>
+                                            </button>
+                                        </mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                            <button *ngIf="!row.editing" mat-icon-button color="primary" focusable="false" (click)="startEdit()">
+                                                <mat-icon>create</mat-icon>
+                                            </button>
+                                            <button *ngIf="row.editing" mat-icon-button color="primary" focusable="false" (click)="confirmEditCreate()">
+                                                <mat-icon>clear</mat-icon>
+                                            </button>
+                                            <button mat-icon-button color="primary" focusable="false" (click)="cancelOrDelete()">
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
+                                        </mat-cell>
+                                    </ng-container>
+
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                </mat-table>
                             </div>
                         </div>
                     </mat-card-content>

@@ -18,4 +18,5 @@ export interface NewProduct {
     newProductPurchaseAccount: string;
     newProductSaleDescription: string;
     newProductPurchaseDescription: string;
+    newProductMultipleFlag: boolean;
 }

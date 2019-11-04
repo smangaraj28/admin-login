@@ -122,7 +122,7 @@ export class TopNavComponent implements OnInit {
     this.sidenav_shw = false;
     this.comlogo_sec = true;
     this.comlogo_txt1 = true;
-    this.comlogo_txt1val = 'Assetscube';
+    this.comlogo_txt1val = 'Admin Module';
     this.comlogo_txt2 = true;
     this.comlogo_txt2val = '-';
     this.comlogo_txt3 = true;
@@ -142,7 +142,7 @@ export class TopNavComponent implements OnInit {
     this.sidenav_shw = false;
     this.comlogo_sec = true;
     this.comlogo_txt1 = true;
-    this.comlogo_txt1val = 'Assetscube';
+    this.comlogo_txt1val = 'Admin Module';
     this.comlogo_txt2 = false;
     this.comlogo_txt2val = '-';
     this.comlogo_txt3 = false;

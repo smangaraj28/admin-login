@@ -1,6 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NewProduct} from '../models/new-product';
+import {MatTableDataSource} from '@angular/material';
+
+export class Person {
+    name: string;
+    age: number;
+}
 
 @Component({
     selector: 'app-new-product',
@@ -10,6 +16,15 @@ import {NewProduct} from '../models/new-product';
 export class NewProductComponent implements OnInit {
     private newProductForm: FormGroup;
     newProductData: NewProduct;
+
+    displayedColumns = ['name', 'age', 'actionsColumn'];
+
+    @Input() personList = [
+        {name: 'Mark', age: 15},
+        {name: 'Brad', age: 50},
+    ];
+    @Output() personListChange = new EventEmitter<Person[]>();
+    private dataSource: MatTableDataSource<Person>;
 
     constructor() {
     }
@@ -34,7 +49,8 @@ export class NewProductComponent implements OnInit {
             newProductSaleAccount: null,
             newProductPurchaseAccount: null,
             newProductSaleDescription: null,
-            newProductPurchaseDescription: null
+            newProductPurchaseDescription: null,
+            newProductMultipleFlag: null
         };
     }
 
@@ -60,6 +76,7 @@ export class NewProductComponent implements OnInit {
             newProductPurchaseDescriptionFormControl: new FormControl()
         });
         this.newProductData = NewProductComponent.initializeData();
+        this.dataSource = new MatTableDataSource(this.personList);
     }
 
     onSave() {
@@ -71,6 +88,22 @@ export class NewProductComponent implements OnInit {
     }
 
     onFileChanged($event: Event) {
+
+    }
+
+    createNew() {
+
+    }
+
+    confirmEditCreate() {
+
+    }
+
+    startEdit() {
+
+    }
+
+    cancelOrDelete() {
 
     }
 }
