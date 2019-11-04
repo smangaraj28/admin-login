@@ -12,15 +12,15 @@ const routes: Routes = [
     },
     {
         path: 'admin',
-        loadChildren: () => import('./feature/dashboard/dashboard.module').then(m => m.DashboardModule)
+        loadChildren: () => import('./feature/admin/admin.module').then(m => m.AdminModule)
     },
     {
         path: 'pos',
-        loadChildren: () => import('./feature/pos-dashboard/pos-dashboard.module').then(m => m.PosDashboardModule)
+        loadChildren: () => import('./feature/pos/pos.module').then(m => m.PosModule)
     },
     {
         path: 'inventory',
-        loadChildren: () => import('./feature/inventory-dashboard/inventory-dashboard.module').then(m => m.InventoryDashboardModule)
+        loadChildren: () => import('./feature/inventory/inventory.module').then(m => m.InventoryModule)
     },
 
     /*

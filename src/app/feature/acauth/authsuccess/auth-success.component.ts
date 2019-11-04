@@ -44,7 +44,7 @@ export class AuthSuccessComponent implements OnInit {
             },
             {
                 'name': 'Hotel POS',
-                'route': '/pos',
+                'route': '/pos-window',
                 'display': 'Hotel POS',
                 'previewImage': 'cortado.jpg'
             },
