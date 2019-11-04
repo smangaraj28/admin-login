@@ -32,7 +32,7 @@ export class AuthSuccessComponent implements OnInit {
         return [
             {
                 'name': 'Room Booking',
-                'route': '/hello',
+                'route': '/room',
                 'display': 'Room Booking',
                 'previewImage': 'bagel.jpg'
             },
@@ -44,19 +44,19 @@ export class AuthSuccessComponent implements OnInit {
             },
             {
                 'name': 'Hotel POS',
-                'route': '/pos-window',
+                'route': '/pos',
                 'display': 'Hotel POS',
                 'previewImage': 'cortado.jpg'
             },
             {
                 'name': 'Super Market POS',
-                'route': 'breadcrumbs',
+                'route': '/superMarket',
                 'display': 'Super Market POS',
                 'previewImage': 'croissant.jpg'
             },
             {
                 'name': 'Reports',
-                'route': 'breadcrumbs',
+                'route': '/reports',
                 'display': 'Reports',
                 'previewImage': 'sausage-egg.jpg'
             },
