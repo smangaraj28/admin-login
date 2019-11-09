@@ -3,14 +3,14 @@ import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireModule} from '@angular/fire';
-
 import {ApiService} from './apiservice/api.service';
-import {AcinterceptorService} from './interceptor/acinterceptor.service';
+import {AddHeaderInterceptor} from './interceptor/add-header.interceptor';
 import {FireauthService} from './fireauth/fireauth.service';
 import {AnalyticsService} from './analytics/analytics.service';
 import {GenauthService} from './genauth/genauth.service';
-
 import {environment} from '../../environments/environment';
+import {LogResponseInterceptor} from './interceptor/log-response.interceptor';
+import {CacheInterceptor} from './interceptor/cache.interceptor';
 
 @NgModule({
     imports: [
@@ -22,8 +22,10 @@ import {environment} from '../../environments/environment';
     declarations: [],
     providers: [
         ApiService,
-        AcinterceptorService,
-        {provide: HTTP_INTERCEPTORS, useClass: AcinterceptorService, multi: true},
+        AddHeaderInterceptor,
+        {provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true},
+        {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true},
         FireauthService,
         AnalyticsService,
         GenauthService
