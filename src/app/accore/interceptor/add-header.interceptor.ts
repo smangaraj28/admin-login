@@ -55,7 +55,7 @@ export class AddHeaderInterceptor implements HttpInterceptor {
         if ((this.check_url_present(urlendstring, req))) {
             this.ustype = this.genericservice.get_user_type();
         } else {
-            this.ustype = this.store.selectSnapshot(AuthState.getUsertype);
+            this.ustype = this.store.selectSnapshot(AuthState.getUserType);
         }
         if (this.ustype !== null) {
             this.headers = this.setHeader(this.headers, 'usertype', this.ustype);
@@ -76,7 +76,7 @@ export class AddHeaderInterceptor implements HttpInterceptor {
         if (!this.skip) {
             if (this.isaddtkn) {
                 console.log('token id start');
-                this.idtkn = this.fbauthservice.get_id_token();
+                this.idtkn = this.fbauthservice.getIdTkn();
                 console.log('token id end');
                 console.log(this.idtkn);
                 console.log((this.idtkn) !== undefined);

@@ -43,7 +43,7 @@ export class AcusermenuComponent implements OnInit {
 
   logout() {
     console.log("logout");
-    this.fauthserv.fb_logout('',{},'');
+    this.fauthserv.fbLogout('',{},'');
     //this.store.dispatch(new Logout());
   }
 

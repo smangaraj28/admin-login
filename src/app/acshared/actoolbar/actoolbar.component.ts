@@ -64,7 +64,7 @@ export class ActoolbarComponent implements OnInit {
     }
 
     async logout(errormsg?) {
-        await this.fauthserv.fb_logout(errormsg = '', {}, '', '/home');
+        await this.fauthserv.fbLogout(errormsg = '', {}, '', '/home');
     }
 
 

@@ -182,7 +182,7 @@ logout_handler() {
   this.nathttp.apiget(this.auth.site + 'logout')
   .subscribe (
       resp => {
-        this.auth.fire_logout()
+        this.auth.fireLogout()
         .then( () => {
           mydialog.close();
           this.auth.delete_session();

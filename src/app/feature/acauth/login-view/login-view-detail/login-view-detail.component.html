@@ -35,7 +35,7 @@
                           </mat-error>
                 </mat-form-field>
               <br>
-                <button mat-raised-button [disabled]="userpasswdlgForm.invalid" (click)="loginWithuserpassword()" fxFlexFill>{{sec1_btn_txt}}</button>   
+                <button mat-raised-button [disabled]="userpasswdlgForm.invalid" (click)="loginWithUserPassword()" fxFlexFill>{{sec1_btn_txt}}</button>
                 
     
        </div>
@@ -53,7 +53,7 @@
 
             <span>&nbsp;</span>
             <span>&nbsp;</span>
-                  <button mat-raised-button (click)="login_btn_click('google')" fxFlexFill style="color:white; background-color: #4285F4">{{goggle_btn_txt}}</button>   
+                  <button mat-raised-button (click)="loginBtnClick('google')" fxFlexFill style="color:white; background-color: #4285F4">{{goggle_btn_txt}}</button>
 
         </div>
         <!-- FIREBASE section end-->
@@ -61,11 +61,10 @@
         <span>&nbsp;</span>
         <span>&nbsp;</span>
              <mat-card-actions>
-                <button mat-button (click)="singup_btn_click()">{{reg_btn_txt}}</button>
+                <button mat-button (click)="signUpBtnClick()">{{reg_btn_txt}}</button>
                 <span fxFlex></span>
                 <button mat-button *ngIf = "show_frgt_pass_btn" >Forgot Password</button>
               </mat-card-actions>
       </mat-card-content>
     
     </mat-card>
-    

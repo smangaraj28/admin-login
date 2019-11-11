@@ -56,7 +56,7 @@ export class LoginUsrConfComponent implements OnInit {
   }
 
   async set_token() {
-    await this.fauthserv.work_on_token();
+    await this.fauthserv.workOnToken();
   }
 
 
@@ -133,7 +133,7 @@ async login_failure(errormsg) {
 }
 
 async logout(errormsg?) {
-  await this.fauthserv.fb_logout(errormsg='',{'type': this.allParams.type}, this.id1, '/login');
+  await this.fauthserv.fbLogout(errormsg='',{'type': this.allParams.type}, this.id1, '/login');
 }
 
 changeuser() {

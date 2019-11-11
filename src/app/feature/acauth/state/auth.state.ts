@@ -1,6 +1,6 @@
 import {FireauthService} from '../../../accore/fireauth/fireauth.service';
 import {ApiService} from '../../../accore/apiservice/api.service';
-import {Action, NgxsOnInit, Selector, State, StateContext, Store} from '@ngxs/store';
+import {Action, Selector, State, StateContext, Store} from '@ngxs/store';
 import {take, tap} from 'rxjs/operators';
 import {CheckSession, LoginFailed, LoginSuccess, LogoutSuccess, SessionExists} from './auth.actions';
 import {AuthStateModel, User} from '../models/auth.model';
@@ -30,9 +30,6 @@ export class AuthState {
                 private dialog?: DialogsService, private api?: ApiService) {
     }
 
-    /**
-     * Selectors
-     */
     @Selector()
     static getInitialized(state: AuthStateModel): boolean {
         return state.initialized;
@@ -54,7 +51,7 @@ export class AuthState {
     }
 
     @Selector()
-    static getUsertype(state: AuthStateModel) {
+    static getUserType(state: AuthStateModel) {
         return state.usertype ? state.usertype : null;
     }
 
@@ -63,11 +60,6 @@ export class AuthState {
      */
     // ngxsOnInit(ctx: StateContext<AuthStateModel>) {
     // }
-
-    /**
-     * Commands
-     */
-
 
     @Action(CheckSession)
     checkSession(ctx: StateContext<AuthStateModel>) {
@@ -92,7 +84,7 @@ export class AuthState {
 
     @Action(LoginSuccess)
     setUserStateOnSuccess(ctx: StateContext<AuthStateModel>, event: LoginSuccess) {
-        console.log('inside loginusuccess');
+        console.log('inside login success');
         console.log((event));
         ctx.patchState({
             initialized: true,
@@ -106,8 +98,8 @@ export class AuthState {
 
 
     @Action(SessionExists)
-    setUserOnsessionexist(ctx: StateContext<AuthStateModel>, event: LoginSuccess) {
-        console.log('inside loginusuccess');
+    setUserOnSessionExist(ctx: StateContext<AuthStateModel>, event: LoginSuccess) {
+        console.log('inside login success');
         console.log((event));
         ctx.patchState({
             user: JSON.parse(JSON.stringify(event.user))
@@ -115,8 +107,8 @@ export class AuthState {
     }
 
     @Action(LogoutSuccess)
-    setUserStateOnlogout(ctx: StateContext<AuthStateModel>) {
-        console.log('inside logoutsuccess');
+    setUserStateOnLogout(ctx: StateContext<AuthStateModel>) {
+        console.log('inside logout success');
         console.log((event));
         ctx.patchState({
             initialized: false,
@@ -129,7 +121,7 @@ export class AuthState {
     }
 
     @Action(LoginFailed)
-    async Setstatetnull(ctx: StateContext<AuthStateModel>) {
+    async SetStateNull(ctx: StateContext<AuthStateModel>) {
         await ctx.dispatch(LogoutSuccess);
     }
 }

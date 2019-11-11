@@ -72,7 +72,7 @@ export class FireauthService {
 
     /*
      async setLoginStat() {
-       await this.refresh_id_token();
+       await this.refreshIdTkn();
        sessionStorage.setItem('user', this.afAuth.auth.currentUser.uid);
        this.currentUserSubject.next(this.afAuth.auth.currentUser);
        //this.user =   this.afAuth.auth.currentUser;
@@ -93,7 +93,7 @@ export class FireauthService {
      }
    */
 
-    async fire_logout() {
+    async fireLogout() {
         console.log('before log out in service');
         return await this.afAuth.auth.signOut();
     }
@@ -129,14 +129,14 @@ export class FireauthService {
 
     // Generic method called by all federated identity providers login (ie.. google, fb, etc...)
     // Each component implements success failure subscriptions
-    // and calls login_success or login_failure accordingly
+    // and calls loginSuccess or loginFailure accordingly
     async login(provider) {
         return await this.afAuth.auth.signInWithPopup(provider);
     }
 
     /*
     // Login success handler
-    async login_success(user,method) {
+    async loginSuccess(user,method) {
       console.log("before");
       let tt: any;
 
@@ -149,7 +149,7 @@ export class FireauthService {
               console.log('login success step1');
               //tt =  await this.store.dispatch(new LoginSuccess(user.user)).toPromise();
               console.log('login success step2');
-              await this.work_on_token();
+              await this.workOnToken();
               console.log("after");
             }
           }
@@ -164,25 +164,25 @@ export class FireauthService {
       }
   */
 
-    async work_on_token() {
+    async workOnToken() {
         if (installation.thirpartyauth) {
-            await this.refresh_id_token()
+            await this.refreshIdTkn()
                 .then(async (idToken) => {
                     this.idtoken = idToken;
-                    await this.set_id_tkn_result();
+                    await this.setIdTknResult();
                 }).catch(function (error) {
                     this.idToken = '';
                 });
         } else {
             this.idtoken = this.own_idtoken === '' ? '' : this.own_idtoken;
-            await this.set_id_tkn_result();
+            await this.setIdTknResult();
         }
 
     }
 
-    async set_id_tkn_result() {
+    async setIdTknResult() {
         if (installation.thirpartyauth) {
-            await this.get_id_tkn_result()
+            await this.getIdTknResult()
                 .then((idTokenResult) => {
 
                     this.tknclaims = idTokenResult.claims;
@@ -199,7 +199,7 @@ export class FireauthService {
 
     /*
   // Login failure handler
-  async login_failure(err) {
+  async loginFailure(err) {
     let nt = this.store.dispatch(new LoginFailed(err));
   }
 
@@ -240,7 +240,7 @@ export class FireauthService {
 
     /* SIGN UP methods END */
 
-    async refresh_id_token() {
+    async refreshIdTkn() {
         return await this.afAuth.auth.currentUser.getIdToken(/* forceRefresh */ false);
     }
 
@@ -252,61 +252,61 @@ export class FireauthService {
         let nt = this.store.dispatch(new LoginFailed(error));
       }
     */
-    async get_id_tkn_result() {
+    async getIdTknResult() {
         return await this.afAuth.auth.currentUser.getIdTokenResult(true);
     }
 
-    public get_id_token() {
+    public getIdTkn() {
         return this.idtoken;
     }
 
 
-    async fb_logout(errormsg, paramtype = {}, alertid, route = '/home') {
+    async fbLogout(errormsg, paramtype = {}, alertid, route = '/home') {
         console.log(errormsg);
         console.log(paramtype);
         console.log(typeof (paramtype));
-        //paramtype = {'type' : 'login'};
+        // paramtype = {'type' : 'login'};
         if (installation.thirpartyauth) {
-            await this.fire_logout()
+            await this.fireLogout()
                 .then(
                     (a) => {
                         console.log(errormsg);
-                        this.logout_final(errormsg, paramtype, alertid, route);
+                        this.logoutFinal(errormsg, paramtype, alertid, route);
                     }
                 )
                 .catch(
                     (e) => {
                         console.log(e);
-                        this.logout_final(errormsg, paramtype, alertid, route);
+                        this.logoutFinal(errormsg, paramtype, alertid, route);
                     }
                 );
         } else {
-            console.log('outside thirdpart in fb_logout');
-            this.logout_final(errormsg, paramtype, alertid, route);
+            console.log('outside thirdpart in fbLogout');
+            this.logoutFinal(errormsg, paramtype, alertid, route);
         }
 
 
     }
 
 
-    logout_final(errormsg, paramtype, alertid, route) {
-        let au = this.store.selectSnapshot((state) => state.auth);
-        console.log('inside logout_final');
+    logoutFinal(errormsg, paramtype, alertid, route) {
+        const au = this.store.selectSnapshot((state) => state.auth);
+        console.log('inside logoutFinal');
         console.log(au);
         if (au.sessionid) {
             console.log('Inside if of logut_final');
-            //this.apiservice.apigettest ('http://127.0.0.1:8080/logout')
+            // this.apiservice.apigettest ('http://127.0.0.1:8080/logout')
             this.apiservice.apiget('auth_logout')
                 .subscribe(
                     (res1: AuthRespModel) => {
                         this.store.dispatch(new LogoutSuccess());
-                        (paramtype == {} ? this.router.navigate([route]) : this.router.navigate([route], {queryParams: {paramtype}}));
+                        (paramtype === {} ? this.router.navigate([route]) : this.router.navigate([route], {queryParams: {paramtype}}));
                         this.dialog.closeall();
                     },
-                    (errormsg) => {
+                    (error) => {
                         this.store.dispatch(new LogoutSuccess());
-                        (paramtype == {} ? this.router.navigate([route]) : this.router.navigate([route], {queryParams: {paramtype}}));
-                        this.Alertserv.update(alertid, (errormsg === {} ? {} : errormsg.message), 'error', 'alert', 'yes');
+                        (paramtype === {} ? this.router.navigate([route]) : this.router.navigate([route], {queryParams: {paramtype}}));
+                        this.Alertserv.update(alertid, (error === {} ? {} : error.message), 'error', 'alert', 'yes');
                         this.dialog.closeall();
                     }
                 );
@@ -317,7 +317,7 @@ export class FireauthService {
             this.store.dispatch(new LogoutSuccess());
             this.reload_err_msg = errormsg.message;
             this.router.navigate([route], {queryParams: paramtype});
-            //this.Alertserv.update(alertid,(errormsg === {}? {} : errormsg.message),'error','alert','yes');
+            // this.Alertserv.update(alertid,(errormsg === {}? {} : errormsg.message),'error','alert','yes');
             this.dialog.closeall();
         }
         this.own_idtoken = '';

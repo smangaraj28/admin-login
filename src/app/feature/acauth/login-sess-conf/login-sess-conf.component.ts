@@ -19,14 +19,12 @@ import {ApiService} from '../../../accore/apiservice/api.service';
 })
 export class LoginSessConfComponent implements OnInit {
 
+    @Select(state => state.auth) auth$: Observable<any>;
+    @Select(AuthState.getUser) user$: Observable<User>;
+
     id1: string;
     allParams: any;
     compuser: any;
-
-    @Select(state => state.auth) auth$: Observable<any>;
-
-    @Select(AuthState.getUser)
-    user$: Observable<User>;
     user: User;
 
     constructor(private store: Store,
@@ -55,7 +53,7 @@ export class LoginSessConfComponent implements OnInit {
 
     async set_token() {
         console.log('afer id');
-        await this.fireauthService.work_on_token();
+        await this.fireauthService.workOnToken();
 
         console.log('all done');
     }
@@ -157,8 +155,8 @@ export class LoginSessConfComponent implements OnInit {
     }
 
     async logout(errormsg?) {
-        await this.fireauthService.fb_logout(errormsg = '', {'type': this.allParams.type}, this.id1, '/login');
-        // await this.fireauthService.fb_logout(errormsg='',{}, this.id1, '/home');
+        await this.fireauthService.fbLogout(errormsg = '', {'type': this.allParams.type}, this.id1, '/login');
+        // await this.fireauthService.fbLogout(errormsg='',{}, this.id1, '/home');
 
     }
 
